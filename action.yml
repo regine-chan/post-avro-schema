@@ -1,0 +1,31 @@
+name: 'Post avro schema to schema registry'
+description: 'Post avro schema to schema registry'
+inputs:
+  SCHEMA_REGISTRY_URL:
+    description: 'URL to the schema registry'
+    required: true
+  KAFKA_USERNAME:
+    description: 'Schema registry authentication username'
+    required: true
+  KAFKA_PASSWORD:
+    description: 'Schema registry authentication password'
+    required: true
+  TOPIC:
+    description: 'Topic to attach schemas'
+    required: true
+  VALUE_SCHEMA_PATH:
+    description: 'Path to the value schema'
+    required: true
+  KEY_SCHEMA_PATH:
+    description: 'Path to the key schema'
+    required: true
+            core.setOutput('VALUE_SCHEMA_ID', valueSchemaId)
+        core.setOutput('KEY_SCHEMA_ID', keySchemaId)
+outputs:
+  VALUE_SCHEMA_ID:
+    description: 'Value schema ID'
+  KEY_SCHEMA_ID:
+    description: 'KEY schema ID'
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
